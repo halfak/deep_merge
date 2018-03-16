@@ -1,0 +1,7 @@
+__name__ = "deep_merge"
+__version__ = "0.0.1"
+__author__ = "Aaron Halfaker"
+__author_email__ = "aaron.halfaker@gmail.com"
+__description__ = "A simple utility for merging python dictionaries."
+__url__ = "https://github.com/halfak/deep_merge"
+__license__ = "MIT"

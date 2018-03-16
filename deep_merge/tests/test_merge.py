@@ -10,6 +10,10 @@ def test_default_behaviors():
     b = {'foo': 10}
     assert merge(a, b, merge_ints=lambda a, b, **kwargs: a+b) == {'foo': 15}
 
+    a = {'foo': 5}
+    b = {'bar': 10}
+    assert merge(a, b) == {'foo': 5, 'bar': 10}
+
 
 def test_big_merge():
     a = {

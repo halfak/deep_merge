@@ -1,3 +1,6 @@
+import copy
+
+
 def append_lists(l1, l2, **kwargs):
     """
     Appends the values in one list on the end of another list
@@ -10,7 +13,7 @@ def overwrite(v1, v2, **kwargs):
     """
     Completely overwrites one value with another.
     """
-    return v2
+    return copy.deepcopy(v2)
 
 
 def merge_dicts(d1, d2, merge_lists=append_lists,
@@ -39,7 +42,7 @@ def merge_dicts(d1, d2, merge_lists=append_lists,
             else:
                 d1[key] = merge_other(d1[key], d2[key], **kwargs)
         else:
-            d1[key] = d2[key]
+            d1[key] = overwrite(None, d2[key])
 
     return d1
 
@@ -68,13 +71,14 @@ def merge(*dicts, merge_dicts=merge_dicts, merge_lists=append_lists,
             The function to apply when merging other types or types that do not
             match.
     """
+    for param in dicts:
+        if not isinstance(param, dict):
+            raise TypeError("{0} is not a dict".format(param))
+
     d = dicts[0]
     for d_update in dicts[1:]:
-        if not isinstance(d, dict):
-            raise TypeError("{0} is not a dict".format(d))
-
         d = merge_dicts(d, d_update,
-                        merge_lists=append_lists,
+                        merge_lists=merge_lists,
                         merge_ints=merge_ints, merge_floats=merge_floats,
                         merge_strings=merge_strings, merge_other=merge_other)
 

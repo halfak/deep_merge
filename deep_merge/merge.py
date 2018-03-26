@@ -10,7 +10,6 @@ def overwrite(v1, v2, **kwargs):
     """
     Completely overwrites one value with another.
     """
-    print(v1, v2)
     return v2
 
 

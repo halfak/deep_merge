@@ -58,3 +58,20 @@ def test_big_merge():
         'herpa_derpa': None
     }
     assert merge(a, b, c) == expected
+
+
+def test_no_references():
+    """
+    Ensure that read-only parameters aren't being modified.
+    """
+    d1 = {}
+    d2 = {"key1": {"key1a": "1"}, "key2": [3, 4]}
+    d3 = {"key1": {"key1a": "2"}, "key2": [4, 5]}
+
+    output = merge(d1, d2, d3)
+    # Is correct.
+    assert output == {"key1": {"key1a": "2"}, "key2": [3, 4, 4, 5]}
+    # Destructive to parameter 1.
+    assert d1 == {"key1": {"key1a": "2"}, "key2": [3, 4, 4, 5]}
+    # Not destructive to parameter 2.
+    assert d2 == {"key1": {"key1a": "1"}, "key2": [3, 4]}

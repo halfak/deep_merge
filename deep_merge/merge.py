@@ -74,7 +74,7 @@ def merge(*dicts, merge_dicts=merge_dicts, merge_lists=append_lists,
             raise TypeError("{0} is not a dict".format(d))
 
         d = merge_dicts(d, d_update,
-                        merge_lists=append_lists,
+                        merge_lists=merge_lists,
                         merge_ints=merge_ints, merge_floats=merge_floats,
                         merge_strings=merge_strings, merge_other=merge_other)
 

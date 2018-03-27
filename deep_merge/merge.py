@@ -47,7 +47,7 @@ def merge_dicts(d1, d2, merge_lists=overwrite,
     return d1
 
 
-def merge(*dicts, merge_dicts=merge_dicts, merge_lists=append_lists,
+def merge(*dicts, merge_dicts=merge_dicts, merge_lists=overwrite,
           merge_ints=overwrite, merge_floats=overwrite,
           merge_strings=overwrite, merge_other=overwrite):
     """

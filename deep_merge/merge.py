@@ -16,7 +16,7 @@ def overwrite(v1, v2, **kwargs):
     return copy.deepcopy(v2)
 
 
-def merge_dicts(d1, d2, merge_lists=append_lists,
+def merge_dicts(d1, d2, merge_lists=overwrite,
                 merge_ints=overwrite, merge_floats=overwrite,
                 merge_strings=overwrite, merge_other=overwrite):
     """
